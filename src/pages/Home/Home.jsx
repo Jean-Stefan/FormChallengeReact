@@ -4,6 +4,7 @@ import {Input, Label} from '../../components/Input/Input';
 import {Image} from '../../components/Image/Image';
 import {Title} from '../../components/Title/Title';
 import {Button} from '../../components/Button/Button';
+import {Checkbox} from '../../components/Checkbox/Checkbox';
 
 export const Home = () => (
     <Container>
@@ -48,6 +49,7 @@ export const Home = () => (
             </FlexColumn>
         </FlexRow>
         <FlexRow>
+            <Checkbox label='I accept the terms and privacy' />
             <Button width='80px' height='40px' type='submit'>
                 Register
             </Button>
@@ -57,6 +59,7 @@ export const Home = () => (
 
 const FlexRow = styled.div`
     display: flex;
+    justify-content: space-between;
 
     @media (max-width: 768px) {
         flex-direction: column;
