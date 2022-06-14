@@ -9,11 +9,29 @@ export const Success = () => {
     const navigate = useNavigate();
     return (
         <Container>
-            <Image src='/src/assets/img/logo.png' />
-            <Title mb={'30px'} r_mb={'15px'}>
-                Success
-            </Title>
-            <Button onClick={() => navigate('/')}>Go Back!</Button>
+            <FlexContainer>
+                <Image src='/src/assets/img/logo.png' />
+                <Title>Success!</Title>
+                <Button
+                    width='269px'
+                    height='177px'
+                    onClick={() => navigate('/')}
+                >
+                    Go Back!
+                </Button>
+            </FlexContainer>
         </Container>
     );
 };
+
+const FlexContainer = styled.div`
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+
+    @media (max-width: 768px) {
+        row-gap: 35px;
+    }
+`;
