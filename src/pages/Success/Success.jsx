@@ -15,6 +15,7 @@ export const Success = () => {
                 <Button
                     width='269px'
                     height='177px'
+                    fontSize='36px'
                     onClick={() => navigate('/')}
                 >
                     Go Back!
