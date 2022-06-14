@@ -48,7 +48,9 @@ export const Home = () => (
             </FlexColumn>
         </FlexRow>
         <FlexRow>
-            <Button type='submit'>Register</Button>
+            <Button width='80px' height='40px' type='submit'>
+                Register
+            </Button>
         </FlexRow>
     </Container>
 );
