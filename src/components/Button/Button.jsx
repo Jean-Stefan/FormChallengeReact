@@ -12,4 +12,8 @@ export const Button = styled.button`
         filter: brightness(0.9);
         cursor: pointer;
     }
+    @media (max-width: 768px) {
+        width: 100%;
+        height: 56px;
+    }
 `;
