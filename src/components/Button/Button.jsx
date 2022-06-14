@@ -7,6 +7,7 @@ export const Button = styled.button`
     background: #0dbdbd;
     border-radius: 10px;
     border-color: transparent;
+    font-size: 16px;
 
     :hover {
         filter: brightness(0.9);
@@ -15,5 +16,6 @@ export const Button = styled.button`
     @media (max-width: 768px) {
         width: 100%;
         height: 56px;
+        font-size: 18px;
     }
 `;
