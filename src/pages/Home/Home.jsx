@@ -71,6 +71,8 @@ export const Home = () => {
                 <Button
                     width='80px'
                     height='40px'
+                    fontSize='16px'
+                    r_FontSize='18px'
                     onClick={(e) => {
                         e.preventDefault;
                         navigate('/success');
