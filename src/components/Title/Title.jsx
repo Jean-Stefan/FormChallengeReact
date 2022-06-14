@@ -7,6 +7,6 @@ export const Title = styled.h1`
     margin-bottom: ${({mb}) => mb};
 
     @media (max-width: 768px) {
-        margin-bottom: 15px;
+        margin-bottom: ${({r_mb}) => r_mb};
     }
 `;
