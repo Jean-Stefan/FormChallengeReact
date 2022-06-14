@@ -3,6 +3,7 @@ import {Container} from '../../components/Container/Container';
 import {Input, Label} from '../../components/Input/Input';
 import {Image} from '../../components/Image/Image';
 import {Title} from '../../components/Title/Title';
+import {Button} from '../../components/Button/Button';
 
 export const Home = () => (
     <Container>
@@ -11,30 +12,43 @@ export const Home = () => (
             Intern Sign Up
         </Title>
         <FlexColumn mb={'40px'} r_mb={'15px'}>
-            <Label>Full Name *</Label>
-            <Input placeholder={'Foo Bar'} />
+            <Label htmlFor='name'>Full Name *</Label>
+            <Input id='name' name='name' placeholder={'Foo Bar'} />
         </FlexColumn>
         <FlexRow>
             <FlexColumn flex={2}>
                 <FlexColumn mb={'50px'} mr={'25px'} r_mb={'15px'} r_mr={'0'}>
-                    <Label>Email *</Label>
-                    <Input type={'email'} placeholder={'foo@bar.com'} />
+                    <Label htmlFor='email'>Email *</Label>
+                    <Input
+                        id='email'
+                        name='email'
+                        type={'email'}
+                        placeholder={'foo@bar.com'}
+                    />
                 </FlexColumn>
                 <FlexColumn mb={'50px'} mr={'25px'} r_mb={'15px'} r_mr={'0'}>
-                    <Label>Password *</Label>
-                    <Input type={'password'} />
+                    <Label htmlFor='password'>Password *</Label>
+                    <Input name='password' id='password' type={'password'} />
                 </FlexColumn>
             </FlexColumn>
             <FlexColumn flex={1} responsive={'row'} r_mb={'40px'}>
                 <GroupPhone mb={'50px'} r_mb={'0px'} r_mr={'15px'}>
-                    <Label>Phone</Label>
-                    <Input type={'tel'} placeholder={'(83) 00000-0000'} />
+                    <Label htmlFor='phone'>Phone</Label>
+                    <Input
+                        name='phone'
+                        id='phone'
+                        type={'tel'}
+                        placeholder={'(83) 00000-0000'}
+                    />
                 </GroupPhone>
                 <GroupBirthday>
-                    <Label>Birthday *</Label>
-                    <Input type={'date'} />
+                    <Label htmlFor='birthday'>Birthday *</Label>
+                    <Input name='birthday' id='birthday' type={'date'} />
                 </GroupBirthday>
             </FlexColumn>
+        </FlexRow>
+        <FlexRow>
+            <Button type='submit'>Register</Button>
         </FlexRow>
     </Container>
 );
