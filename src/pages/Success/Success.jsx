@@ -7,6 +7,11 @@ import styled from 'styled-components';
 
 export const Success = () => {
     const navigate = useNavigate();
+
+    const handleClick = () => {
+        navigate('/');
+        localStorage.clear();
+    };
     return (
         <Container>
             <FlexContainer>
@@ -16,7 +21,7 @@ export const Success = () => {
                     width='269px'
                     height='177px'
                     fontSize='36px'
-                    onClick={() => navigate('/')}
+                    onClick={handleClick}
                 >
                     Go Back!
                 </Button>
