@@ -1,7 +1,8 @@
-import styled from 'styled-components';
 import {useNavigate} from 'react-router-dom';
+import {useForm} from 'react-hook-form';
 import {yupResolver} from '@hookform/resolvers/yup';
 import * as yup from 'yup';
+import styled from 'styled-components';
 
 import {Container} from '../../components/Container/Container';
 import {Input, Label} from '../../components/Input/Input';
@@ -42,99 +43,118 @@ const schema = yup
 
 export const Home = () => {
     const navigate = useNavigate();
+    const {
+        register,
+        handleSubmit,
+        formState: {errors},
+    } = useForm({resolver: yupResolver(schema)});
+
+    const onSubmit = (formData) => {
+        navigate('/success');
+    };
 
     return (
-        <Container>
-            <Image src='/src/assets/img/logo.png' />
-            <Title mb={'30px'} r_mb={'15px'}>
-                Intern Sign Up
-            </Title>
-            <FlexColumn mb={'40px'} r_mb={'15px'}>
-                <Label htmlFor='name'>Full Name *</Label>
-                <Input
-                    {...register('name', {
-                        required: true,
-                    })}
-                    placeholder={'Foo Bar'}
-                />
-                {errors.name && <Error>{errors.name?.message}</Error>}
-            </FlexColumn>
-            <FlexRow>
-                <FlexColumn flex={2}>
-                    <FlexColumn
-                        mb={'50px'}
-                        mr={'25px'}
-                        r_mb={'15px'}
-                        r_mr={'0'}
-                    >
-                        <Label htmlFor='email'>Email *</Label>
-                        <Input
-                            type={'email'}
-                            {...register('email', {required: true})}
-                            placeholder={'foo@bar.com'}
-                        />
-                        {errors.email && <Error>{errors.email?.message}</Error>}
-                    </FlexColumn>
-                    <FlexColumn
-                        mb={'50px'}
-                        mr={'25px'}
-                        r_mb={'15px'}
-                        r_mr={'0'}
-                    >
-                        <Label htmlFor='password'>Password *</Label>
-                        <Input
-                            {...register('password', {required: true})}
-                            type={'password'}
-                        />
-                        {errors.password && (
-                            <Error>{errors.password?.message}</Error>
-                        )}
-                    </FlexColumn>
+        <Container onSubmit={handleSubmit(onSubmit)}>
+            <Form>
+                <Image src='/src/assets/img/logo.png' />
+                <Title mb={'30px'} r_mb={'15px'}>
+                    Intern Sign Up
+                </Title>
+                <FlexColumn mb={'40px'} r_mb={'15px'}>
+                    <Label htmlFor='name'>Full Name *</Label>
+                    <Input
+                        {...register('name', {
+                            required: true,
+                        })}
+                        placeholder={'Foo Bar'}
+                    />
+                    {errors.name && <Error>{errors.name?.message}</Error>}
                 </FlexColumn>
-                <FlexColumn flex={1} responsive={'row'} r_mb={'40px'}>
-                    <GroupPhone mb={'50px'} r_mb={'0px'} r_mr={'15px'}>
-                        <Label htmlFor='phone'>Phone</Label>
-                        <Input
-                            {...register('phone', {required: true})}
-                            type={'tel'}
-                            placeholder={'(83) 00000-0000'}
-                            onChange={(e) => phoneMask(e)}
-                        />
-                        {errors.phone && <Error>{errors.phone?.message}</Error>}
-                    </GroupPhone>
-                    <GroupBirthday>
-                        <Label htmlFor='birthday'>Birthday *</Label>
-                        <Input
-                            {...register('birthday', {required: true})}
-                            type={'date'}
-                        />
-                        {errors.birthday && (
-                            <Error>{errors.birthday?.message}</Error>
-                        )}
-                    </GroupBirthday>
-                </FlexColumn>
-            </FlexRow>
-            <FlexRow>
-                <Checkbox
-                    label='I accept the terms and privacy'
-                    {...{register: register('checkbox')}}
-                />
-                {errors.checkbox && (
-                    <CheckmarkError>{errors.checkbox?.message}</CheckmarkError>
-                )}
-                <Button
-                    width='80px'
-                    height='40px'
-                    fontSize='16px'
-                    r_FontSize='18px'
-                    type='submit'
-                >
-                    Register
-                </Button>
-            </FlexRow>
+                <FlexRow>
+                    <FlexColumn flex={2}>
+                        <FlexColumn
+                            mb={'50px'}
+                            mr={'25px'}
+                            r_mb={'15px'}
+                            r_mr={'0'}
+                        >
+                            <Label htmlFor='email'>Email *</Label>
+                            <Input
+                                type={'email'}
+                                {...register('email', {required: true})}
+                                placeholder={'foo@bar.com'}
+                            />
+                            {errors.email && (
+                                <Error>{errors.email?.message}</Error>
+                            )}
+                        </FlexColumn>
+                        <FlexColumn
+                            mb={'50px'}
+                            mr={'25px'}
+                            r_mb={'15px'}
+                            r_mr={'0'}
+                        >
+                            <Label htmlFor='password'>Password *</Label>
+                            <Input
+                                {...register('password', {required: true})}
+                                type={'password'}
+                            />
+                            {errors.password && (
+                                <Error>{errors.password?.message}</Error>
+                            )}
+                        </FlexColumn>
+                    </FlexColumn>
+                    <FlexColumn flex={1} responsive={'row'} r_mb={'40px'}>
+                        <GroupPhone mb={'50px'} r_mb={'0px'} r_mr={'15px'}>
+                            <Label htmlFor='phone'>Phone</Label>
+                            <Input
+                                {...register('phone', {required: true})}
+                                type={'tel'}
+                                placeholder={'(83) 00000-0000'}
+                                onChange={(e) => phoneMask(e)}
+                            />
+                            {errors.phone && (
+                                <Error>{errors.phone?.message}</Error>
+                            )}
+                        </GroupPhone>
+                        <GroupBirthday>
+                            <Label htmlFor='birthday'>Birthday *</Label>
+                            <Input
+                                {...register('birthday', {required: true})}
+                                type={'date'}
+                            />
+                            {errors.birthday && (
+                                <Error>{errors.birthday?.message}</Error>
+                            )}
+                        </GroupBirthday>
+                    </FlexColumn>
+                </FlexRow>
+                <FlexRow>
+                    <Checkbox
+                        label='I accept the terms and privacy'
+                        {...{register: register('checkbox')}}
+                    />
+                    {errors.checkbox && (
+                        <CheckmarkError>
+                            {errors.checkbox?.message}
+                        </CheckmarkError>
+                    )}
+                    <Button
+                        width='80px'
+                        height='40px'
+                        fontSize='16px'
+                        r_FontSize='18px'
+                        type='submit'
+                    >
+                        Register
+                    </Button>
+                </FlexRow>
+            </Form>
         </Container>
     );
 };
+
+const Form = styled.form``;
 
 const FlexRow = styled.div`
     display: flex;
