@@ -10,6 +10,7 @@ import {Image} from '../../components/Image/Image';
 import {Title} from '../../components/Title/Title';
 import {Button} from '../../components/Button/Button';
 import {Checkbox} from '../../components/Checkbox/Checkbox';
+import {phoneMask} from '../../utils/phoneMask';
 
 const schema = yup
     .object({
