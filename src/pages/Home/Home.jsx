@@ -32,7 +32,7 @@ const schema = yup
         phone: yup
             .string()
             .matches(/^([(][0-9]{2}[)]) ([0-9]{5})-([0-9]{4})/, 'Phone invalid')
-            .required('Phone invalid'),
+            .required(),
         birthday: yup
             .date()
             .typeError('Age invalid')
@@ -58,10 +58,12 @@ export const Home = () => {
         <Container onSubmit={handleSubmit(onSubmit)}>
             <Form>
                 <Image src='/src/assets/img/logo.png' />
+
                 <Title mb={'30px'} r_mb={'15px'}>
                     Intern Sign Up
                 </Title>
-                <FlexColumn mb={'40px'} r_mb={'15px'}>
+
+                <GroupName>
                     <Label htmlFor='name'>Full Name *</Label>
                     <Input
                         {...register('name', {
@@ -70,15 +72,11 @@ export const Home = () => {
                         placeholder={'Foo Bar'}
                     />
                     {errors.name && <Error>{errors.name?.message}</Error>}
-                </FlexColumn>
+                </GroupName>
+
                 <FlexRow>
                     <FlexColumn flex={2}>
-                        <FlexColumn
-                            mb={'50px'}
-                            mr={'25px'}
-                            r_mb={'15px'}
-                            r_mr={'0'}
-                        >
+                        <GroupEmail>
                             <Label htmlFor='email'>Email *</Label>
                             <Input
                                 type={'email'}
@@ -88,13 +86,9 @@ export const Home = () => {
                             {errors.email && (
                                 <Error>{errors.email?.message}</Error>
                             )}
-                        </FlexColumn>
-                        <FlexColumn
-                            mb={'50px'}
-                            mr={'25px'}
-                            r_mb={'15px'}
-                            r_mr={'0'}
-                        >
+                        </GroupEmail>
+
+                        <GroupPassword>
                             <Label htmlFor='password'>Password *</Label>
                             <Input
                                 {...register('password', {required: true})}
@@ -103,21 +97,23 @@ export const Home = () => {
                             {errors.password && (
                                 <Error>{errors.password?.message}</Error>
                             )}
-                        </FlexColumn>
+                        </GroupPassword>
                     </FlexColumn>
-                    <FlexColumn flex={1} responsive={'row'} r_mb={'40px'}>
-                        <GroupPhone mb={'50px'} r_mb={'0px'} r_mr={'15px'}>
+
+                    <FlexColumn flex={1} responsive={'row'}>
+                        <GroupPhone>
                             <Label htmlFor='phone'>Phone</Label>
                             <Input
                                 {...register('phone', {required: true})}
                                 type={'tel'}
                                 placeholder={'(83) 00000-0000'}
-                                onChange={(e) => phoneMask(e)}
+                                onChangeCapture={(e) => phoneMask(e)}
                             />
                             {errors.phone && (
                                 <Error>{errors.phone?.message}</Error>
                             )}
                         </GroupPhone>
+
                         <GroupBirthday>
                             <Label htmlFor='birthday'>Birthday *</Label>
                             <Input
@@ -130,6 +126,7 @@ export const Home = () => {
                         </GroupBirthday>
                     </FlexColumn>
                 </FlexRow>
+
                 <FlexRow>
                     <Checkbox
                         label='I accept the terms and privacy'
@@ -168,32 +165,59 @@ const FlexRow = styled.div`
 
 const FlexColumn = styled.div`
     display: flex;
-    position: relative;
     flex-direction: column;
     flex: ${({flex}) => flex};
-    margin-bottom: ${({mb}) => mb};
-    margin-right: ${({mr}) => mr};
 
     @media (max-width: 768px) {
         flex-direction: ${({responsive}) => responsive};
-        margin-bottom: ${({r_mb}) => r_mb};
-        margin-right: ${({r_mr}) => r_mr};
     }
 `;
 
-const GroupPhone = styled(FlexColumn)`
+const FormGroup = styled.div`
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    margin-bottom: 40px;
+
+    @media (max-width: 768px) {
+        margin-bottom: 15px;
+    }
+`;
+
+const GroupName = styled(FormGroup)``;
+
+const GroupEmail = styled(FormGroup)`
+    margin-right: 25px;
+
+    @media (max-width: 768px) {
+        margin-right: 0px;
+    }
+`;
+
+const GroupPassword = styled(FormGroup)`
+    margin-right: 25px;
+
+    @media (max-width: 768px) {
+        margin-right: 0px;
+    }
+`;
+
+const GroupPhone = styled(FormGroup)`
     @media (max-width: 768px) {
         width: 50%;
         flex: 1;
+        margin-right: 25px;
+        margin-bottom: 25px;
     }
 `;
 
-const GroupBirthday = styled(FlexColumn)`
+const GroupBirthday = styled(FormGroup)`
     max-height: 69px;
 
     @media (max-width: 768px) {
         width: calc(50% - 15px);
         flex: 1;
+        margin-bottom: 25px;
     }
 `;
 
