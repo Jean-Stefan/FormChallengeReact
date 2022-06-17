@@ -1,14 +1,30 @@
 import styled from 'styled-components';
 
-export const Checkbox = ({label}) => {
+export const Checkbox = ({label, name, onChange, register}) => {
     return (
-        <CustomCheckbox className='custom-checkbox'>
-            <HiddenCheckbox type={'checkbox'} />
-            <Checkmark className='checkmark' />
+        <CustomCheckbox>
+            <HiddenCheckbox
+                type='checkbox'
+                name={name}
+                onChange={onChange}
+                {...register}
+            />
+            <Checkmark />
             <Terms children={label} />
         </CustomCheckbox>
     );
 };
+
+const Checkmark = styled.span`
+    width: 20px;
+    height: 20px;
+    border: 2px solid #a5a5a5;
+    display: inline-block;
+    border-radius: 2px;
+    background: #ffffff
+        url(https://upload.wikimedia.org/wikipedia/commons/thumb/2/27/White_check.svg/1200px-White_check.svg.png)
+        center/1250% no-repeat;
+`;
 
 const CustomCheckbox = styled.label`
     display: flex;
@@ -16,7 +32,7 @@ const CustomCheckbox = styled.label`
     cursor: pointer;
     filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
 
-    input:checked + .checkmark {
+    input:checked + ${Checkmark} {
         background-color: #0dbdbd;
         border-color: #0dbdbd;
         background-size: 60%;
@@ -29,17 +45,6 @@ const CustomCheckbox = styled.label`
 
 const HiddenCheckbox = styled.input`
     display: none;
-`;
-
-const Checkmark = styled.span`
-    width: 20px;
-    height: 20px;
-    border: 2px solid #a5a5a5;
-    display: inline-block;
-    border-radius: 2px;
-    background: #ffffff
-        url(https://upload.wikimedia.org/wikipedia/commons/thumb/2/27/White_check.svg/1200px-White_check.svg.png)
-        center/1250% no-repeat;
 `;
 
 const Terms = styled.span`
