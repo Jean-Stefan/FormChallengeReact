@@ -19,12 +19,15 @@ import {
     CheckmarkError,
 } from './Home.styled';
 
-import {Container} from '../../components/Container/Container';
-import {Input, Label} from '../../components/Input/Input';
-import {Image} from '../../components/Image/Image';
-import {Title} from '../../components/Title/Title';
-import {Button} from '../../components/Button/Button';
-import {Checkbox} from '../../components/Checkbox/Checkbox';
+import {
+    Container,
+    Input,
+    Label,
+    Image,
+    Button,
+    Checkbox,
+    Title,
+} from '../../components';
 
 export const Home = () => {
     const navigate = useNavigate();
