@@ -17,7 +17,7 @@ import {
     GroupPhone,
     Error,
     CheckmarkError,
-} from './StylesHome';
+} from './Home.styled';
 
 import {Container} from '../../components/Container/Container';
 import {Input, Label} from '../../components/Input/Input';
