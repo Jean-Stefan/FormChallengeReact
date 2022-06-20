@@ -24,7 +24,7 @@ export const schema = yup
         birthday: yup
             .date()
             .typeError('Age invalid')
-            .min('1899-01-01', 'Age invalid')
+            .min('1901-01-01', 'Age invalid')
             .required('Age invalid'),
         checkbox: yup.boolean().isTrue('You must agree with terms'),
     })
