@@ -15,7 +15,7 @@ export const Success = () => {
     return (
         <Container>
             <FlexContainer>
-                <Image src='/src/assets/img/logo.png' />
+                <Image src='./src/assets/img/logo.png' />
                 <Title>Success!</Title>
                 <Button
                     width='269px'
