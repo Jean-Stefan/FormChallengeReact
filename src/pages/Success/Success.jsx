@@ -1,9 +1,8 @@
 import {useNavigate} from 'react-router-dom';
-import {Container} from '../../components/Container/Container';
-import {Image} from '../../components/Image/Image';
-import {Title} from '../../components/Title/Title';
-import {Button} from '../../components/Button/Button';
+import {Container, Image, Button, Title} from '../../components';
 import styled from 'styled-components';
+
+import logo from '../../assets/img/logo.png';
 
 export const Success = () => {
     const navigate = useNavigate();

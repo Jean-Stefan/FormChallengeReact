@@ -29,6 +29,8 @@ import {
     Title,
 } from '../../components';
 
+import logo from '../../assets/img/logo.png';
+
 export const Home = () => {
     const navigate = useNavigate();
 
@@ -70,7 +72,7 @@ export const Home = () => {
     return (
         <Container>
             <Form onSubmit={handleSubmit(onSubmit)}>
-                <Image src='./src/assets/img/logo.png' />
+                <Image src={logo} />
 
                 <Title mb={'30px'} r_mb={'15px'}>
                     Intern Sign Up
