@@ -68,8 +68,8 @@ export const Home = () => {
     }, []);
 
     return (
-        <Container onSubmit={handleSubmit(onSubmit)}>
-            <Form>
+        <Container>
+            <Form onSubmit={handleSubmit(onSubmit)}>
                 <Image src='/src/assets/img/logo.png' />
 
                 <Title mb={'30px'} r_mb={'15px'}>
